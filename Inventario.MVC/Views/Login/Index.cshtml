@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required />
+                    </div>
+                    <button type="button" id="loginButton" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function login(username, password) {
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // Almacena el token en localStorage o sessionStorage
+                localStorage.setItem('token', data.token);
+                // Redirige a la vista de inventarios
+                window.location.href = '/Productos';
+            } else {
+                const error = await response.json();
+                alert(error.message);
+            }
+        }
+
+        document.getElementById('loginButton').addEventListener('click', function () {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            login(username, password);
+        });
+    </script>
+</body>
+</html>

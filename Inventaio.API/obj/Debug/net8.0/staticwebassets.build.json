@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "y+wfiphklztlU0aiBENoTkzctRxDKXDrPKaXa+CNLHY=",
+  "Source": "Inventaio.API",
+  "BasePath": "_content/Inventaio.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
